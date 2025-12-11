@@ -38,7 +38,6 @@
 <body class="min-h-screen bg-gray-900 p-4 sm:p-8">
 
     <div class="max-w-7xl mx-auto">
-        <!-- Header Section -->
         <header class="text-center py-12">
             <h1 class="text-5xl sm:text-7xl font-extrabold title-gradient mb-4">
                 CRKS Games
@@ -48,14 +47,16 @@
             </p>
         </header>
 
-        <!-- Game Cards Grid Container -->
         <main class="py-8">
             <div id="game-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Game cards will be injected here by JavaScript -->
-            </div>
+                <div class="ad-card p-6 rounded-xl shadow-lg bg-gray-800">
+                    <div class="ad-container">
+                        Your Ad Here (e.g., Google AdSense Ad Unit)
+                        </div>
+                </div>
+                </div>
         </main>
 
-        <!-- Footer Section -->
         <footer class="text-center mt-16 pt-8 border-t border-gray-700">
             <p class="text-gray-500 text-sm">
                 &copy; <span id="current-year"></span> CRKS Games. All rights reserved.
@@ -141,12 +142,38 @@
         }
 
         /**
-         * Renders all game cards to the DOM.
+         * Renders all game cards to the DOM, inserting the ad unit after the first game.
          */
         function renderGameCards() {
             const gameGrid = document.getElementById('game-grid');
             if (gameGrid) {
-                gameGrid.innerHTML = GAMES.map(createGameCard).join('');
+                // Get the HTML for all game cards
+                const gameCardsHtml = GAMES.map(createGameCard);
+                
+                // Get the existing ad card HTML (already in the template)
+                const adCardHtml = document.querySelector('.ad-card').outerHTML;
+                
+                // Remove the ad card from the template for dynamic insertion
+                document.querySelector('.ad-card').remove();
+
+                // Insert the ad card after the first game (index 1 in the array)
+                // If you have N games, this will be placed at position N+1 in the grid.
+                if (gameCardsHtml.length > 0) {
+                    // Splice the ad card into the list after the first game card
+                    gameCardsHtml.splice(1, 0, adCardHtml);
+                } else {
+                    // If no games, just add the ad
+                    gameCardsHtml.push(adCardHtml);
+                }
+
+                // Render the combined content
+                gameGrid.innerHTML = gameCardsHtml.join('');
+                
+                // Optional: If using Google AdSense, you might need to run this command
+                // to load the ads after the elements are in the DOM.
+                if (window.adsbygoogle && window.adsbygoogle.loaded) {
+                     window.adsbygoogle.push({});
+                }
             }
         }
 
@@ -160,8 +187,10 @@
 
         // Run functions when the DOM is fully loaded
         window.onload = function() {
+            // First, set the footer year
+            setFooterYear(); 
+            // Then, render the game cards, which now also includes the ad placement logic
             renderGameCards();
-            setFooterYear();
         };
     </script>
 </body>
