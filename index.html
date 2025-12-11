@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0545N293J"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z0545N293J"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -10,12 +11,13 @@
     
       gtag('config', 'G-Z0545N293J');
     </script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8987947512818621"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8987947512818621"
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRKS Arcade - Game Hub</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom font import for aesthetics */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
@@ -47,17 +49,23 @@
 
         <main class="py-8">
             <div id="game-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                <div class="ad-card p-6 rounded-xl shadow-lg bg-gray-800">
+                <div class="ad-card p-6 rounded-xl shadow-lg bg-gray-800">
                     <div class="ad-container">
-                                                                        <ins class="adsbygoogle"
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8987947512818621"
+                             crossorigin="anonymous"></script>
+                        <!-- Test_Add -->
+                        <ins class="adsbygoogle"
                              style="display:block"
                              data-ad-client="ca-pub-8987947512818621"
                              data-ad-slot="2480610449"
                              data-ad-format="auto"
                              data-full-width-responsive="true"></ins>
-                                            </div>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
                 </div>
-            </div>
+                </div>
         </main>
 
         <footer class="text-center mt-16 pt-8 border-t border-gray-700">
@@ -98,6 +106,17 @@
                 hoverColor: 'hover:border-purple-400'
             },
             // Add more games here to easily expand the hub:
+            /*
+            {
+                id: 3,
+                title: "Example Game",
+                description: "This is a placeholder for another game that you can add later.",
+                url: "https://example.com/game",
+                icon: '<svg class="w-12 h-12 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v1h4a2 2 0 012 2v4a2 2 0 01-2 2h-1v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1H6a2 2 0 01-2-2V9a2 2 0 012-2h4V6a2 2 0 012-2z"></path></svg>',
+                color: 'bg-yellow-600',
+                hoverColor: 'hover:border-yellow-400'
+            },
+            */
         ];
 
         /**
@@ -138,20 +157,18 @@
          */
         function renderGameCards() {
             const gameGrid = document.getElementById('game-grid');
-            // Select the ad card element
-            const adCard = document.querySelector('.ad-card');
-
-            if (gameGrid && adCard) {
+            if (gameGrid) {
                 // Get the HTML for all game cards
                 const gameCardsHtml = GAMES.map(createGameCard);
                 
-                // Get the existing ad card HTML
-                const adCardHtml = adCard.outerHTML;
+                // Get the existing ad card HTML (already in the template)
+                const adCardHtml = document.querySelector('.ad-card').outerHTML;
                 
                 // Remove the ad card from the template for dynamic insertion
-                adCard.remove();
+                document.querySelector('.ad-card').remove();
 
                 // Insert the ad card after the first game (index 1 in the array)
+                // If you have N games, this will be placed at position N+1 in the grid.
                 if (gameCardsHtml.length > 0) {
                     // Splice the ad card into the list after the first game card
                     gameCardsHtml.splice(1, 0, adCardHtml);
@@ -162,6 +179,12 @@
 
                 // Render the combined content
                 gameGrid.innerHTML = gameCardsHtml.join('');
+                
+                // Optional: If using Google AdSense, you might need to run this command
+                // to load the ads after the elements are in the DOM.
+                if (window.adsbygoogle && window.adsbygoogle.loaded) {
+                     window.adsbygoogle.push({});
+                }
             }
         }
 
@@ -179,10 +202,9 @@
             setFooterYear(); 
             // Then, render the game cards, which now also includes the ad placement logic
             renderGameCards();
-
-            // Run this AdSense command ONCE after all ad units are placed in the DOM
-            (window.adsbygoogle = window.adsbygoogle || []).push({});
         };
     </script>
 </body>
 </html>
+
+is it done correctly
