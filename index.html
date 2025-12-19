@@ -79,14 +79,67 @@
                 </div>
         </main>
 
-        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
-            <p class="text-gray-500 text-sm">
-                &copy; <span id="current-year"></span> CRKS Games. All rights reserved.
-            </p>
+<footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-8 px-4">
+                <div>
+                    <h3 class="text-white font-bold mb-2">About CRKS Games</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        CRKS Games is a web-based game project dedicated to creating high-quality, 
+                        engaging browser games. From fast-paced arcade survivors to complex math-based automation 
+                        puzzles, focused on smooth performance and fun mechanics for all players.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-2">Our Technology</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        The games are built using modern web standards including HTML5, JavaScript, and CSS3. 
+                        By leveraging the power of the Canvas API, we ensure that every game runs 
+                        smoothly across both desktop and mobile devices.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-2">Contact Us</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-2">
+                        Have feedback, a bug report, or a business inquiry? Reach out:
+                    </p>
+                    <p class="text-indigo-400 text-sm font-semibold">
+                        Dev Info: <a href="https://umutenesuzun.github.io/" class="hover:underline">Portfolio</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="current-year"></span> CRKS Games. All rights reserved.
+                </p>
+                <button onclick="togglePrivacyModal()" class="text-gray-400 hover:text-white text-xs underline">
+                    Privacy Policy
+                </button>
+            </div>
         </footer>
     </div>
 
+    <div id="privacy-modal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 p-6 rounded-xl max-w-2xl max-h-[80vh] overflow-y-auto text-left text-gray-300">
+            <h2 class="text-2xl font-bold text-white mb-4">Privacy Policy</h2>
+            <p class="mb-4">This Privacy Policy describes how CRKS Games collects and uses information when you use our website.</p>
+            <h3 class="text-white font-bold mt-4 mb-2">Google AdSense & Cookies</h3>
+            <p class="mb-4 text-sm">We use Google AdSense to serve ads. Google uses cookies to serve ads based on a user's prior visits to this website. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to this site and/or other sites on the Internet.</p>
+            <p class="mb-4 text-sm">Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" class="text-blue-400 underline">Google Ads Settings</a>.</p>
+            <h3 class="text-white font-bold mt-4 mb-2">Information We Collect</h3>
+            <p class="mb-4 text-sm">We do not collect personal data unless you contact us via email. Like many other websites, we use log files to analyze trends and administer the site.</p>
+            <button onclick="togglePrivacyModal()" class="mt-6 bg-indigo-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-indigo-500 transition">Close</button>
+        </div>
+    </div>
+
     <script>
+        // Toggle Privacy Modal
+        function togglePrivacyModal() {
+            const modal = document.getElementById('privacy-modal');
+            if (modal) {
+                modal.classList.toggle('hidden');
+            }
+        }
         // Define the game data structure
         const GAMES = [
             {
